@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:00:11 by Gufortel          #+#    #+#             */
-/*   Updated: 2019/07/20 14:29:38 by Gufortel         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:49:43 by gufortel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 
-void	count_line(char *file, t_fdf *p){
-	char *line;
-	int count;
-	int fd;
+void	count_line(char *file, t_fdf *p)
+{
+	char	*line;
+	int		count;
+	int		fd;
 
 	count = 0;
 	fd = open(file, O_RDONLY);
@@ -36,12 +37,13 @@ void	count_line(char *file, t_fdf *p){
 
 void	fill_tab(t_fdf *p, char **tab, int i)
 {
-	int j;
+	int		j;
 
 	j = 0;
 	while (tab[j])
 		j++;
-	if (p->size_mapy != j && p->size_mapy != 0){
+	if (p->size_mapy != j && p->size_mapy != 0)
+	{
 		ft_printf("Wrong map");
 		exit(-1);
 	}
@@ -57,10 +59,10 @@ void	fill_tab(t_fdf *p, char **tab, int i)
 
 void	delete_tab(char **tab)
 {
-	int j;
+	int		j;
 
 	j = 0;
-	while(tab[j])
+	while (tab[j])
 	{
 		free(tab[j]);
 		j++;
@@ -68,14 +70,12 @@ void	delete_tab(char **tab)
 	free(tab);
 }
 
-void	recup(char *file, t_fdf *p)
+void	recup(char *file, t_fdf *p, int i)
 {
 	int		fd;
 	char	*line;
 	char	**tab;
-	int		i;
 
-	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
@@ -93,6 +93,8 @@ void	recup(char *file, t_fdf *p)
 			free(line);
 		i++;
 	}
-	p->zoom = (p->size_mapy > p->size_mapx) ? p->size_mapy * 1.2 : p->size_mapx * 1.2;
+	p->zoom_init = (p->size_mapy > p->size_mapx) ?
+	p->size_mapy * 1.2 : p->size_mapx * 1.2;
+	p->zoom = p->zoom_init;
 	close(fd);
 }

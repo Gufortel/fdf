@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 13:34:27 by Gufortel          #+#    #+#             */
-/*   Updated: 2019/07/20 14:52:39 by Gufortel         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:39:07 by gufortel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int		sign(double deltay)
 
 void	drawx(t_fdf *p)
 {
-	double deltay;
-	double delta;
-	double err;	
-	int x;
-	int y;
+	double	deltay;
+	double	delta;
+	double	err;
+	int		x;
+	int		y;
 
 	err = 0.0;
 	deltay = p->y1 - p->y0;
@@ -54,11 +54,11 @@ void	drawx(t_fdf *p)
 
 void	drawy(t_fdf *p)
 {
-	double deltay;
-	double delta;
-	double err;	
-	int x;
-	int y;
+	double	deltay;
+	double	delta;
+	double	err;
+	int		x;
+	int		y;
 
 	err = 0.0;
 	deltay = p->x1 - p->x0;

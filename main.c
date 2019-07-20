@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 13:10:50 by Gufortel          #+#    #+#             */
-/*   Updated: 2019/07/20 15:04:01 by Gufortel         ###   ########.fr       */
+/*   Updated: 2019/07/20 23:19:53 by gufortel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	key_hook2(int keycode, t_fdf *p)
 {
 	if (keycode == 2)
-		p->axe_x += 50;
+		p->axe_x += 200;
 	else if (keycode == 0)
-		p->axe_x -= 50;
+		p->axe_x -= 200;
 	else if (keycode == 1)
-		p->axe_y += 50;
+		p->axe_y += 200;
 	else if (keycode == 13)
-		p->axe_y -= 50;
+		p->axe_y -= 200;
 	else if (keycode == 3)
 		iso(p);
 	else if (keycode == 5)
@@ -33,6 +33,7 @@ void	key_hook2(int keycode, t_fdf *p)
 int		key_hook(int keycode, void *params)
 {
 	t_fdf *p;
+
 	p = params;
 	if (keycode == 53)
 		exit(42);
@@ -48,7 +49,7 @@ int		key_hook(int keycode, void *params)
 		p->r_y += 0.1;
 	else if (keycode == 124 && p->pro == 0)
 		p->r_y -= 0.1;
-	else if (keycode == 258)
+	else if (keycode == 258 && p->zoom < 100000)
 		p->zoom *= 2;
 	else
 		key_hook2(keycode, p);
@@ -56,21 +57,21 @@ int		key_hook(int keycode, void *params)
 	return (1);
 }
 
-int main (int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_fdf	*p;
+
 	av += 0;
-	p = createfdf(x_max, y_max);
+	p = createfdf(X_MAX, Y_MAX);
 	if (ac != 2)
 	{
 		ft_printf("Wrong Arguments");
-		return(-1);
+		return (-1);
 	}
-	recup(av[1], p);
+	recup(av[1], p, 0);
 	create_matrix(p);
 	create_image(p);
 	mlx_key_hook(p->win, key_hook, p);
 	mlx_loop(p->mlx);
-	while(1);
 	return (0);
 }

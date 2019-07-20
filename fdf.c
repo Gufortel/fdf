@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gufortel <gufortel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 13:13:53 by Gufortel          #+#    #+#             */
-/*   Updated: 2019/07/20 14:53:10 by Gufortel         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:39:41 by gufortel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 
-t_fdf *createfdf(int x, int y)
+t_fdf	*createfdf(int x, int y)
 {
 	t_fdf	*ptr;
 
@@ -33,7 +33,7 @@ t_fdf *createfdf(int x, int y)
 	return (ptr);
 }
 
-void iso(t_fdf *p)
+void	iso(t_fdf *p)
 {
 	p->tab[0][0] = (sqrt(2.0) / 2.0);
 	p->tab[0][1] = -(sqrt(2.0) / 2.0);
@@ -42,6 +42,7 @@ void iso(t_fdf *p)
 	p->tab[1][1] = (1.0 / sqrt(6.0));
 	p->tab[1][2] = -(0.12);
 	p->pro = 1;
+	p->zoom = p->zoom_init;
 	p->r_x = 0;
 	p->r_y = 0;
 	p->z_val = 1;
@@ -55,6 +56,7 @@ void	par(t_fdf *p)
 	p->tab[1][0] = 0;
 	p->tab[1][1] = 1;
 	p->tab[1][2] = 0;
+	p->zoom = p->zoom_init;
 	p->pro = 0;
 	p->r_x = 0;
 	p->r_y = 0;
